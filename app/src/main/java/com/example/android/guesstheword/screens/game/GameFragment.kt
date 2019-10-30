@@ -17,6 +17,7 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,7 @@ class GameFragment : Fragment() {
          * Pre-existing ViewModel is used when configuration change occurs and its Fragment is recreated.
          */
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        Log.i("GameFragment", "Called ViewModelProviders.of. hash: ${viewModel.hashCode()}") //same hashcode when reestablished.
 
         resetList()
         nextWord()
