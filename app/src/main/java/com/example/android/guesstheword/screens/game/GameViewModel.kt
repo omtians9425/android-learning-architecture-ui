@@ -7,6 +7,12 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
+    companion object {
+        const val DONE = 0L
+        const val ONE_SECOND = 1000L
+        const val COUNTDOWN_TIME_TOTAL = 60000L
+    }
+
     // The current word
     private val _word = MutableLiveData<String>()
     val word: LiveData<String>
