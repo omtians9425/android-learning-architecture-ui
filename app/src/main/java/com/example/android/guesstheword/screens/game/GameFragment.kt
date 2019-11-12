@@ -57,6 +57,8 @@ class GameFragment : Fragment() {
          * Pre-existing ViewModel is used when configuration change occurs and its Fragment is recreated.
          */
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+
+        binding.gameViewModel = viewModel
         Log.i(
             "GameFragment",
             "Called ViewModelProviders.of. hash: ${viewModel.hashCode()}"
