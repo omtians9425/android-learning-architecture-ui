@@ -64,13 +64,6 @@ class GameFragment : Fragment() {
             "Called ViewModelProviders.of. hash: ${viewModel.hashCode()}"
         ) //same hashcode when reestablished.
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-        }
-
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore?.toString()
         })
