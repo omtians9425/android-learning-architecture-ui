@@ -57,6 +57,7 @@ class GameFragment : Fragment() {
          * Pre-existing ViewModel is used when configuration change occurs and its Fragment is recreated.
          */
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        binding.lifecycleOwner = this
 
         binding.gameViewModel = viewModel
         Log.i(
@@ -64,12 +65,6 @@ class GameFragment : Fragment() {
             "Called ViewModelProviders.of. hash: ${viewModel.hashCode()}"
         ) //same hashcode when reestablished.
 
-        viewModel.score.observe(this, Observer { newScore ->
-            binding.scoreText.text = newScore?.toString()
-        })
-        viewModel.word.observe(this, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
         viewModel.eventGameFinish.observe(this, Observer {hasFinished ->
             if(hasFinished) {
                 val currScore = viewModel.score.value ?: 0
