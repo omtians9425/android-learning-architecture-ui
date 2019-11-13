@@ -30,7 +30,7 @@ class GameViewModel : ViewModel() {
         get() = _score
 
     private val _remainingTime = MutableLiveData<Long>()
-    val remainingTime: LiveData<Long>
+    private val remainingTime: LiveData<Long>
     get() = _remainingTime
 
     val remainingTimeString = Transformations.map(remainingTime) { time ->
