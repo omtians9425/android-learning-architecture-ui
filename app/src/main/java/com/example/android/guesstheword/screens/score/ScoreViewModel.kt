@@ -16,6 +16,7 @@ class ScoreViewModel(finalScore: Int) : ViewModel() {
     get() = _eventPlayAgain
 
     init {
+        _score.value = finalScore
         Log.i("ScoreViewModel", "Final score is $finalScore")
     }
 

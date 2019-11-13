@@ -59,10 +59,9 @@ class ScoreFragment : Fragment() {
 
         viewModelFactory = ScoreViewModelFactory(scoreFragmentArgs.score)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.scoreViewModel = viewModel
 
-        viewModel.score.observe(this, Observer {
-            binding.scoreText.text = it.toString()
-        })
         viewModel.eventPlayAgain.observe(this, Observer { playAgain ->
             if(playAgain) {
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
