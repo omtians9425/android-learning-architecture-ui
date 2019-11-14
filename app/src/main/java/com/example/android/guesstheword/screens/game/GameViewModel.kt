@@ -15,6 +15,12 @@ class GameViewModel : ViewModel() {
         const val DONE = 0L
         const val ONE_SECOND = 1000L
         const val COUNTDOWN_TIME_TOTAL = 10000L
+
+        //vibration
+        private val CORRECT_BUZZ_PATTERN = longArrayOf(100, 100, 100, 100, 100, 100)
+        private val PANIC_BUZZ_PATTERN = longArrayOf(0, 200)
+        private val GAME_OVER_BUZZ_PATTERN = longArrayOf(0, 2000)
+        private val NO_BUZZ_PATTERN = longArrayOf(0)
     }
 
     private val timer: CountDownTimer
