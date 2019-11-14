@@ -23,6 +23,13 @@ class GameViewModel : ViewModel() {
         private val NO_BUZZ_PATTERN = longArrayOf(0)
     }
 
+    enum class BuzzType(pattern: LongArray) {
+        CORRECT(CORRECT_BUZZ_PATTERN),
+        GAME_OVER(GAME_OVER_BUZZ_PATTERN),
+        COUNTDOWN_PANIC(PANIC_BUZZ_PATTERN),
+        NO_BUZZ(NO_BUZZ_PATTERN)
+    }
+
     private val timer: CountDownTimer
 
     // The current word
