@@ -16,6 +16,9 @@ class GameViewModel : ViewModel() {
         const val ONE_SECOND = 1000L
         const val COUNTDOWN_TIME_TOTAL = 10000L
 
+        // This is the time when the phone will start buzzing each second
+        private const val COUNTDOWN_PANIC_SECONDS = 10L
+
         //vibration
         private val CORRECT_BUZZ_PATTERN = longArrayOf(100, 100, 100, 100, 100, 100)
         private val PANIC_BUZZ_PATTERN = longArrayOf(0, 200)
@@ -71,7 +74,9 @@ class GameViewModel : ViewModel() {
         timer = object : CountDownTimer(COUNTDOWN_TIME_TOTAL, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
                 _remainingTime.value = (millisUntilFinished / ONE_SECOND) //convert to minutes
-                _buzz.value = BuzzType.COUNTDOWN_PANIC
+                if(millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
+                    _buzz.value = BuzzType.COUNTDOWN_PANIC
+                }
                 Log.d("GameViewModel", "timer. remain: ${millisUntilFinished/ ONE_SECOND}")
             }
 
@@ -133,7 +138,6 @@ class GameViewModel : ViewModel() {
 
     fun onSkip() {
         _score.value = (score.value)?.minus(1)
-        _buzz.value = BuzzType.NO_BUZZ
         nextWord()
     }
 
@@ -145,6 +149,10 @@ class GameViewModel : ViewModel() {
 
     fun onGameFinishComplete() {
         _eventGameFinish.value = false
+    }
+
+    fun onBuzzComplete() {
+        _buzz.value = BuzzType.NO_BUZZ
     }
 
 }

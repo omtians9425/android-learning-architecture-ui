@@ -78,7 +78,10 @@ class GameFragment : Fragment() {
             }
         })
         viewModel.buzz.observe(this, Observer { buzzType ->
-            buzz(buzzType.pattern)
+           if(buzzType != GameViewModel.BuzzType.NO_BUZZ) {
+               buzz(buzzType.pattern)
+               viewModel.onBuzzComplete() //reset state
+           }
         })
         return binding.root
     }
